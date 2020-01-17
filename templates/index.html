@@ -1,5 +1,11 @@
 {% extends "_layout.html" %}
 {% block content %}
-<h1>Homepage Woohoo</h1>
+{% if store_name %}
+    <p style="font-size: 20px;">Successfully added {{store_name}} !</p>
+    <a href="{{url_for('shop')}}" class ="btn">Add another store</a> 
+{%else%}
+    <h2>Homepage Woohoo</h2>
+    <a href="{{url_for('shop')}}">Add a store!</a>
+{%endif%}
 {% endblock %}
 

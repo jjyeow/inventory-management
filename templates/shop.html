@@ -1,0 +1,11 @@
+{% extends "_layout.html" %}
+{% block content %}
+<form action="{{url_for('index')}}">
+    <div class = "inv_management">
+        <h1>Adding a store</h1>
+        <label for="store_name">Store name: </label>
+        <input type='text' name='store_name' class="inv_management" />
+    </div>
+    <button type="submit" class="btn btn-primary" style="border-radius: 15px;">Submit</button>
+</form>
+{% endblock %}

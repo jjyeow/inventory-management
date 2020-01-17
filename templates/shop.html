@@ -1,7 +1,8 @@
 {% extends "_layout.html" %}
 {% block content %}
-<form action="{{url_for('index')}}">
+<form action="{{url_for('shop_form')}}">
     <div class = "inv_management">
+        
         <h1>Adding a store</h1>
         <label for="store_name">Store name: </label>
         <input type='text' name='store_name' class="inv_management" />

@@ -1,11 +1,20 @@
 {% extends "_layout.html" %}
 {% block content %}
-{% if store_name %}
-    <p style="font-size: 20px;">Successfully added {{store_name}} !</p>
+{#{% if store_name %}
+
     <a href="{{url_for('shop')}}" class ="btn">Add another store</a> 
-{%else%}
+{%else%}#}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
     <h2>Homepage Woohoo</h2>
     <a href="{{url_for('shop')}}">Add a store!</a>
-{%endif%}
+{#{%endif%}#}
 {% endblock %}
 

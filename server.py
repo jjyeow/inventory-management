@@ -25,9 +25,9 @@ def index():
 def shop(): 
     return render_template('shop.html')
 
-@app.route("/shop_form")
+@app.route("/shop_form", methods = ["POST"])
 def shop_form(): 
-    store_name = request.args.get('store_name')
+    store_name = request.form.get('store_name')
     store_details = Store(name=store_name)
     if store_details.save(): 
         flash('Store sucessfully saved!')

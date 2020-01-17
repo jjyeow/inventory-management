@@ -2,7 +2,7 @@
 {% block content %}
 {#{% if store_name %}
 
-    <a href="{{url_for('shop')}}" class ="btn">Add another store</a> 
+    <a href="{{url_for('shop')}}" method = "POST" class ="btn">Add another store</a> 
 {%else%}#}
     {% with messages = get_flashed_messages() %}
     {% if messages %}

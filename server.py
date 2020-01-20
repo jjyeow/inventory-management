@@ -25,6 +25,25 @@ def index():
 def shop(): 
     return render_template('shop.html')
 
+@app.route("/shop/<store_id_view>")
+def view_shop(store_id_view):
+    stores_id = Store.get_by_id(store_id_view)
+    no_warehouse = [0]
+    for i in stores_id.warehouses:
+        no_warehouse.append(i)
+           
+    no_warehouse = len(no_warehouse) - 1
+    
+    return render_template('shop_view.html', stores_id = stores_id, no_warehouse = no_warehouse)
+    
+# @app.route("/shop_updated/<store_id_view/")
+# def shop_updated(store_id_view)
+#     stores_id = Store.get_by_id(store_id_view)
+#     no_warehouse = [0]
+#     for i in stores_id.warehouses:
+#         no_warehouse.append(i)
+           
+#     no_warehouse = len(no_warehouse) - 1
 @app.route("/warehouse")
 def warehouse():
     stores = Store.select()

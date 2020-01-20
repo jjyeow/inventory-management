@@ -1,0 +1,18 @@
+{% extends "_layout.html" %}
+{% block content %}
+
+<t style="font-size: 20px;">{{stores_id.name}} Store</t> 
+<h3>Number of warehouse</h3>
+<t> {{no_warehouse}}</t>
+
+
+<form action= "{{url_for('shop')}}">
+    <div class = "inv_management">
+        <label for="store_name_update">Store name: </label>
+        <input type='text' name='store_name_update' class="inv_management" />
+    </div>
+    <button type="submit" class="btn btn-primary" style="border-radius: 15px;">Submit</button>
+</form>
+
+
+{% endblock %}

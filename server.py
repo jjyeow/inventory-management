@@ -28,26 +28,26 @@ def shop():
 @app.route("/shop/<store_id_view>",methods=["GET","POST"])
 def view_shop(store_id_view):
     stores_id = Store.get_by_id(store_id_view)
-    if request.method == "GET":
-        no_warehouse = [0]
-        for i in stores_id.warehouses:
-            no_warehouse.append(i)
-            
-        no_warehouse = len(no_warehouse) - 1
-        return render_template('shop_view.html', stores_id = stores_id, no_warehouse = no_warehouse)
-    else:
-        new_store_name = request.form.get('store_name_update')
-        stores_id.name = new_store_name 
-        if stores_id.save():
-            return redirect(url_for("view_shop", store_id_view = store_id_view))
+    # if request.method == "GET":
+    no_warehouse = [0]
+    for i in stores_id.warehouses:
+        no_warehouse.append(i)
+        
+    no_warehouse = len(no_warehouse) - 1
+    return render_template('shop_view.html', stores_id = stores_id, no_warehouse = no_warehouse)
+    # else:
+    #     new_store_name = request.form.get('store_name_update')
+    #     stores_id.name = new_store_name 
+    #     if stores_id.save():
+    #         return redirect(url_for("view_shop", store_id_view = store_id_view))
 
-# @app.route("/shop/<store_id_view>/update",methods=["POST"])
-# def edit_shop(store_id_view):
-#     stores_id = Store.get_by_id(store_id_view)
-#     new_store_name = request.form.get('store_name_update')
-#     stores_id.name = new_store_name 
-#     if stores_id.save():
-#         return redirect(url_for("view_shop", stores_id = stores_id))
+@app.route("/shop/<store_id_view>/update",methods=["POST"])
+def edit_shop(store_id_view):
+    stores_id = Store.get_by_id(store_id_view)
+    new_store_name = request.form.get('store_name_update')
+    stores_id.name = new_store_name 
+    if stores_id.save():
+        return redirect(url_for("view_shop", store_id_view = store_id_view))
 
     
 # @app.route("/shop/<store_id_view>")

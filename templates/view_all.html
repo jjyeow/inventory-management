@@ -1,0 +1,36 @@
+{% extends "_layout.html" %}
+{% block content %}
+<table class = "index_table" style="width: 100%;">
+    <thead>
+        <tr>
+            <th scope="col">Store ID</th>
+            <th scope="col">Store Name</th>
+            <th scope="col">Number of Warehouses</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stores in all_stores %}
+
+        <tr>
+            <td scope="col">{{stores.id}}</td>
+            <td scope="col">{{stores.name}}</td>
+            <td>{{(stores.warehouses | length)}}</td>
+            <td>
+            <a href="{{url_for('view_shop', store_id_view = stores.id)}}" method="POST" style="border: 20px;">Edit</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+            </td>
+            <td>
+            
+            <form action="{{ url_for('delete_shop') }}" method="POST">
+                <button type="submit" name="store_to_delete" value="{{stores.id}}" style="border-radius: 20px; color: white; background-color: red;">Delete</button>  
+            </form>
+            
+            </td>
+            
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock %}

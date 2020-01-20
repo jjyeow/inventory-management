@@ -25,6 +25,39 @@ def index():
 def shop(): 
     return render_template('shop.html')
 
+@app.route("/shop_index")
+def shop_index():
+    all_stores = Store.select() 
+    # store_names = []
+    # store_warehouse = []
+    # store_details = []
+    # store_id = []
+    # for i in all_stores: 
+    #     arr = [0]
+    #     # store_names.append(i.name)
+    #     stores_instance = Store.get_by_id(i.id)
+    #     for j in stores_instance.warehouses: 
+    #         arr.append(j)
+    #     store_warehouse.append(len(arr)-1)
+
+    # for j in range(len(store_names)):
+    #     store_details.append({store_names[j]: store_warehouse[j]})
+
+    # for k in all_stores:
+    #     store_id.append(k.id)
+
+    return render_template('view_all.html', all_stores = all_stores)
+
+@app.route("/shop/delete", methods=["POST"])
+def delete_shop(): 
+    store_to_delete_id = request.form.get('store_to_delete')
+    store_delete = Store.get_by_id(store_to_delete_id)
+    Warehouse.delete().where(Warehouse.store_id == store_to_delete_id).execute()
+    store_delete.delete_instance()
+    
+
+    return redirect(url_for("shop_index"))
+
 @app.route("/shop/<store_id_view>",methods=["GET","POST"])
 def view_shop(store_id_view):
     stores_id = Store.get_by_id(store_id_view)
